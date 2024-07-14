@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./docker/go/Dockerfile.dev
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend:/app
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./docker/Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/app:/app
+    depends_on:
+      - backend
