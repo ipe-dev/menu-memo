@@ -1,6 +1,8 @@
 version: '3.8'
 services:
   backend:
+    env_file:
+      - backend/.env
     build:
       context: ./backend
       dockerfile: ./docker/go/Dockerfile.dev
