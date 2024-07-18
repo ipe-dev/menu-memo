@@ -20,3 +20,13 @@ services:
       - ./frontend:/app
     depends_on:
       - backend
+  db:
+    image: mysql:8.0
+    environment:
+      - DB_ROOT_PASSWORD
+      - DB_DATABASE
+      - DB_USER
+      - DB_PASSWORD
+    restart: always
+    volumes:
+      - ./database/initdb.d:/docker-init-entrypoint.d
