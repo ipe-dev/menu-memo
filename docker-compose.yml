@@ -21,7 +21,9 @@ services:
     depends_on:
       - backend
   db:
-    image: mysql:8.0
+    build: 
+      context: ./backend 
+      dockerfile: ./docker/db/Dockerfile.dev
     environment:
       - DB_ROOT_PASSWORD
       - DB_DATABASE
@@ -29,4 +31,4 @@ services:
       - DB_PASSWORD
     restart: always
     volumes:
-      - ./database/initdb.d:/docker-init-entrypoint.d
+      - ./src/database/initdb.d:/docker-init-entrypoint.d
