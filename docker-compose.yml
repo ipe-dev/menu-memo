@@ -1,8 +1,6 @@
 version: '3.8'
 services:
   backend:
-    env_file:
-      - backend/src/.env
     build:
       context: ./backend
       dockerfile: ./docker/go/Dockerfile.dev
@@ -24,8 +22,6 @@ services:
     build: 
       context: ./backend 
       dockerfile: ./docker/db/Dockerfile.dev
-    env_file:
-      - ./backend/src/.env
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -33,4 +29,4 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     restart: always
     volumes:
-      - ./src/database/initdb.d:/docker-init-entrypoint.d
+      - ./backend/src/database/initdb.d:/docker-init-entrypoint.d
